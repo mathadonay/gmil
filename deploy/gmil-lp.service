@@ -1,0 +1,26 @@
+# /etc/systemd/system/gmil-lp.service — LP de cotação da GMIL (Next.js, porta 3020).
+[Unit]
+Description=LP de cotacao GMIL Transportes (Next.js, porta 3020)
+After=network.target
+ConditionPathExists=/srv/gmil-lp/current/package.json
+
+[Service]
+Type=simple
+User=gmil
+Group=gmil
+WorkingDirectory=/srv/gmil-lp/current
+Environment=NODE_ENV=production HOME=/srv/gmil-lp NEXT_TELEMETRY_DISABLED=1 LEADS_DIR=/var/lib/gmil-lp
+# Segredos (N8N_WEBHOOK_URL, N8N_WEBHOOK_TOKEN, FILA_TOKEN): root, 600.
+EnvironmentFile=-/etc/gmil-lp.env
+ExecStart=/usr/bin/node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3020
+Restart=always
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/gmil-lp/releases /var/lib/gmil-lp
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
