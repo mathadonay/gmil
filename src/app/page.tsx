@@ -20,6 +20,8 @@ import { Rastreio } from '@/components/lp/Rastreio';
 import { BotaoRota } from '@/components/lp/BotaoRota';
 import { BarraCTA } from '@/components/lp/BarraCTA';
 import { Consentimento } from '@/components/lp/Consentimento';
+import { CarrosselFrota } from '@/components/lp/CarrosselFrota';
+import { WhatsAppFlutuante } from '@/components/lp/WhatsAppFlutuante';
 import { mostrarPendencias } from '@/lib/pendencias';
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -40,6 +42,7 @@ export default async function Pagina({ searchParams }: Props) {
       </main>
       <Rodape />
       <BarraCTA />
+      <WhatsAppFlutuante />
       <Consentimento />
       <Rastreio />
     </>
@@ -93,18 +96,7 @@ function Hero({ variante }: { variante: Variante }) {
               <li key={f}>{f}</li>
             ))}
           </ul>
-          <figure className="hero__foto">
-            <Image
-              src="/fotos/sider-noite.jpg"
-              alt={hero.fotoAlt}
-              fill
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 900px) 100vw, 760px"
-              quality={70}
-            />
-            <figcaption className="legenda">Frota GMIL · foto real</figcaption>
-          </figure>
+          <CarrosselFrota slides={hero.slides} />
         </div>
         <LeadForm
           variante={variante}
@@ -180,6 +172,12 @@ function Rotas() {
             </p>
           </div>
         </div>
+        <p className="rotas__dica">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-.6a6 6 0 0 1-4.6-2.2L4.6 15.9a1.6 1.6 0 0 1 2.4-2.1L9 15.5" />
+          </svg>
+          {rotas.dica}
+        </p>
         <ul className="rotas__lista">
           {ROTAS_CAMPANHA.map((uf) => (
             <li className="rota" key={uf}>

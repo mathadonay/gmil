@@ -108,7 +108,13 @@ export const hero = {
     'Sider, graneleiro, aberta e grade baixa',
     'Rastreamento da carga',
   ],
-  fotoAlt: 'Cavalo Volvo prata da GMIL com carreta sider de lona preta e o logo GMIL, estacionado à noite',
+  slides: [
+    { src: '/fotos/hero/01-sider-noite.jpg', alt: 'Cavalo Volvo prata da GMIL com carreta sider de lona preta e o logo GMIL, à noite' },
+    { src: '/fotos/hero/02-sider-dia.jpg', alt: 'Conjunto sider da GMIL com cavalo prata número 001 estacionado no pátio' },
+    { src: '/fotos/hero/03-estrada.jpg', alt: 'Carreta sider da GMIL na estrada ao pôr do sol' },
+    { src: '/fotos/hero/04-sider-patio.jpg', alt: 'Cavalo prata e carreta sider da GMIL vistos de lado, com a lona preta e o logo' },
+    { src: '/fotos/hero/05-cavalos.jpg', alt: 'Três cavalos Volvo da GMIL lado a lado, nas cores azul-petróleo, laranja e prata' },
+  ],
 };
 
 export const cta = {
@@ -222,9 +228,9 @@ export const frota = {
 export const rotas = {
   rotulo: 'Os dois sentidos',
   titulo: 'Saindo e chegando ao Paraná',
-  texto: 'A base fica no Paraná e a frota roda nos dois sentidos. Escolha a rota para começar a cotação.',
+  texto: 'A base fica no Paraná e a frota roda nos dois sentidos, com carga completa na ida e na volta.',
   outras: 'Também atendemos os demais estados, menos o Amapá.',
-  dica: 'Clique em um sentido para preencher a origem e o destino.',
+  dica: 'Clique na sua rota: a origem e o destino já entram na ordem de cotação.',
 };
 
 export const processo = {
