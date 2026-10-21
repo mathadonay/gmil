@@ -71,3 +71,19 @@ Preview: `https://gmil.nedir.com.br` (noindex, robots.txt bloqueando tudo, sem s
 | Gabriel | Pode citar as empresas do grupo e usar as fotos delas? | Futuro bloco de capacidade |
 | Matheus | Webhook n8n + planilha; GTM e conversão "Lead Qualificado" | `/etc/gmil-lp.env` e `GTM_ID` |
 | Fornecedor do site (NLS/Andrei) | CNAME `cotacao` | Domínio final |
+
+## Revisão de 21/10/2026: linguagem dos posts
+
+A pedido do Matheus, a comunicação visual foi aproximada dos criativos de social media da GMIL (Drive `1ix6JHsngSUiE_bMVQ76Qu03gRj_wE-cw`, 9 posts 1080×1350, baixados em `/srv/gmil-materiais/criativos`). As cintas e catracas da lona saíram.
+
+| Elemento dos posts | Como entrou na LP |
+|---|---|
+| Foto da frota em cima, corte diagonal e faixa laranja mais grossa à direita | Primeira dobra: carrossel sangrando até a borda esquerda e por baixo da ordem de cotação, com o mesmo corte; o título fica no painel carvão logo abaixo |
+| Fundo carvão #1F2021 | Fundo de todas as dobras escuras |
+| Trecho do título em laranja semibold | `destaque` em cada variante e nos títulos das dobras |
+| Tarja escura atrás de palavras ("E o transporte?") | "para cotar?" no fechamento; a placa da rota (PR ⇄ SP) virou tarja laranja |
+| Painel laranja inteiro (posts 1 e 8) | Dobra de fechamento, com botão carvão |
+| Fio laranja diagonal no canto | Canto superior da dobra de rotas |
+| Poppins | Títulos e corpo (400 e 600). O Archivo largo ficou só nos rótulos, nas placas de rota e no cabeçalho da ordem |
+
+As fotos dos posts parecem geradas ou retocadas por IA (doca azul, escritório com mapa, cavalo laranja na serra). A LP continua só com fotos reais da frota, como o cliente pediu no briefing.

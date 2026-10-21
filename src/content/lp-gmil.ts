@@ -44,6 +44,7 @@ export type Variante = {
   id: string;
   campanha: 'rotas' | 'lotacao' | 'padrao';
   titulo: string;
+  destaque?: string; // trecho do título em laranja, como nos posts
   apoio: string;
   rota?: { origem: UF; destino: UF };
   ordemForm: 'rota-primeiro' | 'carga-primeiro';
@@ -55,33 +56,38 @@ const APOIO_PADRAO =
   'Lotação em carreta sider, graneleiro, carroceria aberta e grade baixa. Frota própria e agregada, com base no Paraná e atendimento em todos os estados, menos o Amapá.';
 
 export const variantesLotacao: Record<string, Omit<Variante, 'campanha' | 'ordemForm'>> = {
-  lotacao: { id: 'lotacao:padrao', titulo: 'Lotação e carga fechada para indústrias e embarcadores', apoio: APOIO_PADRAO },
+  lotacao: { id: 'lotacao:padrao', titulo: 'Lotação e carga fechada para indústrias e embarcadores', destaque: 'indústrias e embarcadores', apoio: APOIO_PADRAO },
   sider: {
     id: 'lotacao:sider',
     titulo: 'Frete em carreta sider para carga fechada',
+    destaque: 'carreta sider',
     apoio: 'Sider para carga industrializada, com lotação saindo e chegando ao Paraná. Também graneleiro, carroceria aberta e grade baixa.',
   },
   industria: {
     id: 'lotacao:industria',
     titulo: 'Transporte de carga industrial em lotação',
+    destaque: 'carga industrial',
     apoio: 'Carreta sider, bitrem e rodotrem para a carga fechada da sua indústria, com base no Paraná e atendimento em todos os estados, menos o Amapá.',
     tipoCarga: 'industrializada',
   },
   fertilizante: {
     id: 'lotacao:fertilizante',
     titulo: 'Transporte de fertilizante em carga fechada',
+    destaque: 'fertilizante',
     apoio: 'Fertilizante e adubo em lotação, em sider ou graneleiro, saindo e chegando ao Paraná.',
     tipoCarga: 'fertilizante',
   },
   bebidas: {
     id: 'lotacao:bebidas',
     titulo: 'Transporte de bebidas em carreta sider',
+    destaque: 'bebidas',
     apoio: 'Cerveja e outras bebidas em carga fechada, com carreta sider e base no Paraná.',
     tipoCarga: 'bebidas',
   },
   bid: {
     id: 'lotacao:bid',
     titulo: 'Transportadora para o seu BID de lotação',
+    destaque: 'BID de lotação',
     apoio: 'Informe as rotas e os volumes da concorrência. A equipe comercial analisa rota, carga, custo e viabilidade e retorna com a proposta.',
     frequencia: 'bid',
   },
@@ -90,6 +96,7 @@ export const variantesLotacao: Record<string, Omit<Variante, 'campanha' | 'ordem
 export const varianteRotasPadrao = {
   id: 'rotas:padrao',
   titulo: 'Cargas completas saindo e chegando ao Paraná',
+  destaque: 'saindo e chegando ao Paraná',
   apoio: APOIO_PADRAO,
 };
 
@@ -202,6 +209,7 @@ export const form = {
 export const frota = {
   rotulo: 'A frota',
   titulo: 'Caminhão certo para carga fechada',
+  destaque: 'carga fechada',
   texto: 'Frota própria e agregada, com cavalos padronizados e implementos para carga industrializada e agro.',
   ficha: [
     { item: 'Veículos', valor: 'Truck · carreta · bitrem · rodotrem' },
@@ -228,6 +236,7 @@ export const frota = {
 export const rotas = {
   rotulo: 'Os dois sentidos',
   titulo: 'Saindo e chegando ao Paraná',
+  destaque: 'Paraná',
   texto: 'A base fica no Paraná e a frota roda nos dois sentidos, com carga completa na ida e na volta.',
   outras: 'Também atendemos os demais estados, menos o Amapá.',
   dica: 'Clique na sua rota: a origem e o destino já entram na ordem de cotação.',
@@ -255,6 +264,7 @@ export const provaSocial = {
 
 export const fechamento = {
   titulo: 'Tem carga fechada para cotar?',
+  tarja: 'para cotar?',
   texto: 'Envie a rota e a carga. A equipe comercial da GMIL retorna com a análise.',
   foto: 'Cavalo roxo da GMIL carregando carreta sider aberta na frente de uma indústria',
 };

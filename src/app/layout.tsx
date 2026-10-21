@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { archivo } from '@/styles/fonts';
+import { archivo, poppins } from '@/styles/fonts';
 import '@/styles/globals.css';
 
 const site = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gmil.nedir.com.br';
@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   icons: { icon: '/icone.svg' },
 };
 
-export const viewport: Viewport = { themeColor: '#1c1a1b', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#1f2021', width: 'device-width', initialScale: 1 };
 
 // Consent Mode v2: tudo negado até o visitante escolher.
 const consentPadrao = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={archivo.variable}>
+    <html lang="pt-BR" className={`${poppins.variable} ${archivo.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: consentPadrao }} />
       </head>

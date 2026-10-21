@@ -1,12 +1,16 @@
-/* LP GMIL · conceito "Lona e ordem de carga".
-   A página é a lateral de uma carreta sider: lona preta com cintas verticais e catracas,
-   letras largas como o grafismo da frota. O formulário é a ordem de cotação, em papel.
-   O laranja da marca (#F5821F) é reservado à ação: só o botão de conversão o usa (fora o logo). */
+/* LP GMIL · linguagem dos posts da GMIL (social media, out/2026):
+   foto real em cima com corte diagonal e faixa laranja, painel carvão com o texto,
+   trechos em laranja ou em tarja, painéis laranja inteiros, fio laranja diagonal nos cantos, Poppins.
+   O formulário continua sendo a ordem de cotação, em papel. Botão de ação: laranja sobre escuro/claro,
+   carvão sobre os painéis laranja. */
 
 :root {
-  --lona: #1c1a1b;
-  --lona-2: #262324;
-  --lona-3: #312d2e;
+  --lona: #1f2021; /* carvão dos posts */
+  --lona-2: #2a2b2c;
+  --lona-3: #343536;
+  --laranja: #f5821f;
+  --laranja-escuro: #dd6919;
+  --sangria: calc(var(--gutter) + max(0px, (100vw - var(--largura) - 2 * var(--gutter)) / 2));
   --prata: #c9c6c0;
   --prata-2: #8f8b86;
   --papel: #f3f1ec;
@@ -42,9 +46,8 @@ body {
   background: var(--lona);
   color: var(--papel);
   font-family: var(--fonte), system-ui, sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.55;
-  font-variation-settings: 'wdth' 100;
+  font-size: 1rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -86,11 +89,13 @@ textarea {
 
 /* ---------- Tipografia proprietária: letras largas da frota ---------- */
 .largo {
+  font-family: var(--fonte-larga), var(--fonte), sans-serif;
   font-variation-settings: 'wdth' 125;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
 .rotulo {
+  font-family: var(--fonte-larga), var(--fonte), sans-serif;
   font-variation-settings: 'wdth' 125;
   font-weight: 600;
   font-size: 0.75rem;
@@ -98,36 +103,26 @@ textarea {
   text-transform: uppercase;
 }
 
-/* ---------- Assinatura: lona com cintas e catracas ---------- */
+/* ---------- Fundo escuro dos posts (sem as cintas da v1) ---------- */
 .lona {
   position: relative;
-  background-color: var(--lona);
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 calc(var(--cinta) - 4px),
-      rgba(255, 255, 255, 0.045) calc(var(--cinta) - 4px) var(--cinta)
-    ),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%);
+  background: var(--lona);
 }
-.lona::after {
-  /* catracas: a fileira de fivelas na base da lona */
+/* Fio laranja diagonal no canto, como nos posts */
+.com-fio {
+  overflow: hidden;
+}
+.com-fio::before {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 14px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent 0 calc(var(--cinta) - 14px),
-    var(--prata-2) calc(var(--cinta) - 14px) calc(var(--cinta) + 6px),
-    transparent calc(var(--cinta) + 6px) var(--cinta)
-  );
-  background-size: var(--cinta) 8px;
-  background-repeat: repeat-x;
-  background-position: 0 3px;
-  opacity: 0.55;
+  top: -40px;
+  left: -60px;
+  width: 260px;
+  height: 2px;
+  background: var(--laranja);
+  transform: rotate(-38deg);
+  transform-origin: left top;
+  top: 150px;
   pointer-events: none;
 }
 
@@ -179,34 +174,50 @@ textarea {
   margin: 4px 0 18px;
 }
 .hero__titulo {
-  font-size: clamp(2.2rem, 3.4vw, 3.35rem);
-  line-height: 1.04;
+  font-size: clamp(2.1rem, 3.1vw, 3.1rem);
+  line-height: 1.08;
   margin: 0;
-  font-weight: 750;
-  font-variation-settings: 'wdth' 108;
-  letter-spacing: -0.015em;
+  font-weight: 400;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
+.destaque {
+  color: var(--laranja);
+  font-weight: 600;
+}
+.tarja {
+  display: inline;
+  background: var(--lona);
+  color: #fff;
+  font-weight: 600;
+  padding: 0 0.18em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 .hero__titulo .placa {
-  display: block;
+  display: table;
+  font-family: var(--fonte-larga), var(--fonte), sans-serif;
   font-variation-settings: 'wdth' 125;
   font-weight: 850;
-  font-size: 1.85em;
-  line-height: 0.95;
+  font-size: 1.4em;
+  line-height: 1;
   letter-spacing: 0.02em;
-  margin: 6px 0 8px;
+  margin: 10px 0 12px;
+  padding: 6px 16px 8px;
+  background: var(--laranja);
+  color: #fff;
   white-space: nowrap;
 }
 .placa__seta {
   font-weight: 400;
-  color: var(--prata);
+  color: var(--lona);
   margin: 0 0.12em;
 }
 .hero__apoio {
-  font-size: 1.125rem;
-  color: #dcd8d1;
-  max-width: 40ch;
-  margin: 18px 0 22px;
+  font-size: 1.0625rem;
+  color: #d9d9d9;
+  max-width: 46ch;
+  margin: 16px 0 20px;
 }
 .fatos {
   list-style: none;
@@ -217,11 +228,9 @@ textarea {
   gap: 8px 10px;
 }
 .fatos li {
-  border: 1px solid var(--linha-escura);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 6px 12px 6px 10px;
+  padding: 2px 14px 2px 0;
   font-size: 0.9375rem;
-  color: #e7e3dc;
+  color: #e7e7e7;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -230,8 +239,7 @@ textarea {
   content: '';
   width: 8px;
   height: 8px;
-  background: var(--prata);
-  transform: rotate(45deg);
+  background: var(--laranja);
   flex: none;
 }
 .btn-acao.hero__cta-celular {
@@ -337,6 +345,7 @@ textarea {
   scroll-margin-top: 16px;
 }
 .ordem__cab {
+  border-bottom: 4px solid var(--laranja);
   background: var(--tinta);
   color: #fff;
   padding: 14px 22px 12px;
@@ -400,11 +409,10 @@ textarea {
   min-width: 0;
 }
 .etapa legend {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.0625rem;
   padding: 0;
   margin-bottom: 12px;
-  font-variation-settings: 'wdth' 112;
 }
 .campo {
   display: grid;
@@ -587,9 +595,8 @@ textarea.entrada {
   color: var(--tinta);
   border: 0;
   border-radius: var(--raio);
-  font-weight: 750;
-  font-size: 1.0625rem;
-  font-variation-settings: 'wdth' 110;
+  font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.12s, transform 0.12s;
@@ -609,6 +616,16 @@ textarea.entrada {
 .btn-acao[aria-disabled='true'] {
   opacity: 0.6;
   cursor: progress;
+}
+.btn-acao--escuro {
+  background: var(--lona);
+  color: #fff;
+}
+.btn-acao--escuro:hover {
+  background: #000;
+}
+.btn-acao--escuro:active {
+  background: #000;
 }
 .btn-acao--cheio {
   flex: 1;
@@ -672,12 +689,11 @@ textarea.entrada {
   color: var(--prata);
 }
 .secao__titulo {
-  font-size: clamp(1.9rem, 3vw, 2.75rem);
-  line-height: 1.08;
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  line-height: 1.12;
   margin: 0 0 16px;
-  font-weight: 750;
-  font-variation-settings: 'wdth' 110;
-  letter-spacing: -0.015em;
+  font-weight: 400;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .secao__texto {
@@ -755,6 +771,7 @@ textarea.entrada {
 }
 .fotos .f-larga {
   grid-column: 1 / -1;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   aspect-ratio: 16 / 9.5;
 }
 .fotos .f-meia {
@@ -806,6 +823,7 @@ textarea.entrada {
   transition: color 0.12s, background 0.12s, border-color 0.12s;
 }
 .rota__botao strong {
+  font-family: var(--fonte-larga), var(--fonte), sans-serif;
   font-size: clamp(1.2rem, 1.7vw, 1.5rem);
   font-variation-settings: 'wdth' 125;
   font-weight: 800;
@@ -822,13 +840,13 @@ textarea.entrada {
   color: var(--prata);
 }
 .rota__botao:hover {
-  background: var(--papel);
-  border-color: var(--papel);
-  color: var(--tinta);
+  background: var(--laranja);
+  border-color: var(--laranja);
+  color: #fff;
 }
 .rota__botao:hover strong span,
 .rota__botao:hover small {
-  color: var(--tinta);
+  color: var(--lona);
 }
 .rotas__rodape {
   display: flex;
@@ -851,7 +869,7 @@ textarea.entrada {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-  border-top: 3px solid var(--tinta);
+  border-top: 3px solid var(--laranja);
 }
 .passo {
   padding: 22px 28px 8px 0;
@@ -863,8 +881,8 @@ textarea.entrada {
 }
 .passo h3 {
   margin: 0 0 6px;
-  font-size: 1.25rem;
-  font-variation-settings: 'wdth' 110;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .passo p {
   margin: 0;
@@ -873,7 +891,7 @@ textarea.entrada {
 .passo__n {
   display: block;
   margin-bottom: 10px;
-  color: var(--tinta-2);
+  color: var(--laranja-escuro);
 }
 
 /* Fechamento */
@@ -1047,8 +1065,8 @@ textarea.entrada {
 }
 .simples h1 {
   font-size: clamp(1.9rem, 3vw, 2.6rem);
-  line-height: 1.1;
-  font-variation-settings: 'wdth' 110;
+  line-height: 1.12;
+  font-weight: 400;
   margin: 0 0 16px;
 }
 .simples h2 {
@@ -1075,6 +1093,79 @@ textarea.entrada {
 .resumo dd {
   margin: 0;
   font-weight: 600;
+}
+
+/* ---------- Primeira dobra no formato dos posts ----------
+   Foto real em cima (sangrando até a borda esquerda e passando por baixo da ordem),
+   corte diagonal com faixa laranja mais grossa à direita, texto no painel carvão. */
+.hero__esquerda {
+  min-width: 0;
+}
+.hero__midia {
+  position: relative;
+  margin-left: calc(-1 * var(--sangria));
+  width: calc(100% + var(--sangria) + 56px + 160px);
+  background: linear-gradient(90deg, var(--laranja-escuro), var(--laranja));
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+}
+.hero__midia .hero__foto {
+  aspect-ratio: auto;
+  height: 100%;
+  border: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 66%, 0 94%);
+}
+.hero__midia .hero__foto::after {
+  /* escurece o topo para emendar com o cabeçalho, como nos posts */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(31, 32, 33, 0.55), transparent 28%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero__midia .carrossel__slide img {
+  object-position: 50% 58%;
+}
+.hero__midia .carrossel__controles {
+  left: var(--sangria);
+  right: auto;
+  bottom: auto;
+  top: 16px;
+}
+.hero__midia .legenda {
+  left: calc(var(--sangria) + 224px);
+  bottom: auto;
+  top: 27px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+}
+.hero__conteudo {
+  position: relative;
+  padding-top: 6px;
+}
+.hero__grade > .ordem {
+  position: relative;
+  z-index: 3;
+  margin-top: 36px;
+}
+
+/* Painel laranja inteiro (fechamento), como os posts de fundo laranja */
+.secao--laranja {
+  background: linear-gradient(180deg, var(--laranja) 0%, var(--laranja-escuro) 100%);
+  color: #fff;
+}
+.secao--laranja .secao__texto {
+  color: #fff;
+}
+.secao--laranja .tarja {
+  background: var(--lona);
+}
+.secao--laranja .fechamento__foto {
+  border: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+.secao--laranja .btn-linha {
+  color: #fff;
 }
 
 /* ---------- Responsivo ---------- */
@@ -1171,5 +1262,53 @@ textarea.entrada {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Primeira dobra: altura e celular */
+@media (min-width: 901px) {
+  .hero {
+    padding: 0 0 40px;
+    align-items: stretch;
+  }
+  .hero__grade {
+    align-items: stretch;
+  }
+  .hero__esquerda {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero__midia {
+    /* Cresce para preencher a dobra, mas sempre deixa ~420 px para o título e o apoio na tela. */
+    flex: 1 1 auto;
+    min-height: 220px;
+    max-height: min(560px, max(220px, calc(100svh - 69px - 420px)));
+  }
+  .hero__grade > .ordem {
+    align-self: start;
+  }
+}
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 0;
+  }
+  .hero__midia {
+    margin-left: calc(-1 * var(--gutter));
+    width: calc(100% + 2 * var(--gutter));
+    height: 240px;
+    margin-bottom: 4px;
+  }
+  .hero__midia .legenda {
+    right: auto;
+    left: var(--gutter);
+    top: auto;
+    bottom: 26%;
+  }
+  .hero__grade > .ordem {
+    margin-top: 0;
+  }
+  .com-fio::before {
+    width: 140px;
+    top: 90px;
   }
 }

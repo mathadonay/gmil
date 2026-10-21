@@ -60,6 +60,20 @@ function Topo() {
   );
 }
 
+/** Título no estilo dos posts: um trecho em laranja (destaque) ou numa tarja escura (tarja). */
+function Realce({ texto, destaque, tarja }: { texto: string; destaque?: string; tarja?: string }) {
+  const alvo = destaque ?? tarja;
+  const i = alvo ? texto.indexOf(alvo) : -1;
+  if (!alvo || i < 0) return <>{texto}</>;
+  return (
+    <>
+      {texto.slice(0, i)}
+      <span className={destaque ? 'destaque' : 'tarja'}>{alvo}</span>
+      {texto.slice(i + alvo.length)}
+    </>
+  );
+}
+
 function Titulo({ variante }: { variante: Variante }) {
   if (variante.rota) {
     const { origem, destino } = variante.rota;
@@ -77,26 +91,34 @@ function Titulo({ variante }: { variante: Variante }) {
       </h1>
     );
   }
-  return <h1 className="hero__titulo">{variante.titulo}</h1>;
+  return (
+    <h1 className="hero__titulo">
+      <Realce texto={variante.titulo} destaque={variante.destaque} />
+    </h1>
+  );
 }
 
 function Hero({ variante }: { variante: Variante }) {
   return (
     <section className="hero lona" id="inicio" aria-label="Cotação de carga fechada">
       <div className="container hero__grade">
-        <div>
-          <p className="hero__rotulo rotulo">{hero.rotulo}</p>
-          <Titulo variante={variante} />
-          <p className="hero__apoio">{variante.apoio}</p>
-          <a href="#cotacao" className="btn-acao hero__cta-celular" data-cta="hero-celular">
-            {cta.texto}
-          </a>
-          <ul className="fatos" aria-label="Estrutura">
-            {hero.fatos.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
-          <CarrosselFrota slides={hero.slides} />
+        <div className="hero__esquerda">
+          <div className="hero__midia">
+            <CarrosselFrota slides={hero.slides} />
+          </div>
+          <div className="hero__conteudo">
+            <p className="hero__rotulo rotulo">{hero.rotulo}</p>
+            <Titulo variante={variante} />
+            <p className="hero__apoio">{variante.apoio}</p>
+            <a href="#cotacao" className="btn-acao hero__cta-celular" data-cta="hero-celular">
+              {cta.texto}
+            </a>
+            <ul className="fatos" aria-label="Estrutura">
+              {hero.fatos.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <LeadForm
           variante={variante}
@@ -118,7 +140,7 @@ function Frota() {
         <div>
           <p className="secao__rotulo rotulo">{frota.rotulo}</p>
           <h2 className="secao__titulo" id="frota-t">
-            {frota.titulo}
+            <Realce texto={frota.titulo} destaque={frota.destaque} />
           </h2>
           <p className="secao__texto">{frota.texto}</p>
           <dl className="ficha">
@@ -159,13 +181,13 @@ function Frota() {
 
 function Rotas() {
   return (
-    <section className="secao lona" aria-labelledby="rotas-t">
+    <section className="secao lona com-fio" aria-labelledby="rotas-t">
       <div className="container">
         <div className="rotas__topo">
           <div>
             <p className="secao__rotulo rotulo">{rotas.rotulo}</p>
             <h2 className="secao__titulo" id="rotas-t">
-              {rotas.titulo}
+              <Realce texto={rotas.titulo} destaque={rotas.destaque} />
             </h2>
             <p className="secao__texto" style={{ marginBottom: 0, color: '#dcd8d1' }}>
               {rotas.texto}
@@ -203,7 +225,7 @@ function Processo() {
       <div className="container">
         <p className="secao__rotulo rotulo">{processo.rotulo}</p>
         <h2 className="secao__titulo" id="processo-t">
-          Análise antes do preço
+          Análise <span className="destaque">antes do preço</span>
         </h2>
         <ol className="passos">
           {processo.passos.map((p, i) => (
@@ -242,17 +264,17 @@ function ProvaSocial() {
 
 function Fechamento() {
   return (
-    <section className="secao fechamento lona" aria-labelledby="fim-t">
+    <section className="secao fechamento secao--laranja" aria-labelledby="fim-t">
       <div className="container fechamento__grade">
         <figure className="fechamento__foto">
           <Image src="/fotos/carregando-industria.jpg" alt={fechamento.foto} width={720} height={533} sizes="(max-width: 900px) 100vw, 640px" quality={80} />
         </figure>
         <div>
           <h2 className="secao__titulo" id="fim-t">
-            {fechamento.titulo}
+            <Realce texto={fechamento.titulo} tarja={fechamento.tarja} />
           </h2>
           <p className="secao__texto">{fechamento.texto}</p>
-          <a href="#cotacao" className="btn-acao" data-cta="fechamento">
+          <a href="#cotacao" className="btn-acao btn-acao--escuro" data-cta="fechamento">
             {cta.texto}
           </a>
           {whatsapp.numero ? (
